@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator_app", "Calculato
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parse_app", "Parse_app\Parse_app.csproj", "{83DB4439-626A-4CC4-9521-EAD850796D4B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cycles_app", "Cycles_app\Cycles_app.csproj", "{56F216DE-14D9-4043-AF74-B1F8DFB10542}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{83DB4439-626A-4CC4-9521-EAD850796D4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83DB4439-626A-4CC4-9521-EAD850796D4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83DB4439-626A-4CC4-9521-EAD850796D4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56F216DE-14D9-4043-AF74-B1F8DFB10542}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56F216DE-14D9-4043-AF74-B1F8DFB10542}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56F216DE-14D9-4043-AF74-B1F8DFB10542}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56F216DE-14D9-4043-AF74-B1F8DFB10542}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
