@@ -56,12 +56,12 @@ Console.WriteLine("3. Двовимірний масив розміру 9х9.\n")
 
 int[,] nineArray = new int[9, 9];
 
-int rowArray = nineArray.GetUpperBound(0);
-int colArray = nineArray.GetUpperBound(1);
+int nineRows = nineArray.GetUpperBound(0);
+int nineCols = nineArray.GetUpperBound(1);
 
-for (int i = 0; i <= rowArray; i++)
+for (int i = 0; i <= nineRows; i++)
 {
-    for (int j = 0; j <= colArray; j++)
+    for (int j = 0; j <= nineCols; j++)
     {
         nineArray[i, j] = (i + 1) * (j + 1);
 
@@ -79,7 +79,99 @@ for (int i = 0; i <= rowArray; i++)
 // Визначити та вивести на екран: а) максимальний елемент масиву; б) мінімальний елемент масиву;
 // в) координати мінімального елемента масиву. г) координати максимального елемента масиву.
 
+Console.WriteLine("\n4. Двовимірний масив розміру 5х5.\n");
+
+int[,] fiveArray = new int[5, 5];
+
+int fiveRows = fiveArray.GetUpperBound(0);
+int fiveCols = fiveArray.GetUpperBound(1);
+
+for (int i = 0; i <= fiveRows; i++)
+{
+    for (int j = 0; j <= fiveCols; j++)
+    {
+        fiveArray[i, j] = random.Next(0, 99);
+
+        if (fiveArray[i, j] < 10)
+        {
+            Console.Write(" ");
+        }
+
+        Console.Write(fiveArray[i, j] + " ");
+    }
+    Console.WriteLine();
+}
+
+Console.WriteLine();
+
+int minValue = fiveArray[0, 0], maxValue = fiveArray[0, 0];
+int minRow = 0, minCol = 0;
+int maxRow = 0, maxCol = 0;
+
+for (int i = 0; i <= fiveRows; i++)
+{
+    for (int j = 0; j <= fiveCols; j++)
+    {
+        if (fiveArray[i, j] < minValue)
+        {
+            minValue = fiveArray[i, j];
+            minRow = i;
+            minCol = j;
+        }
+        else if (fiveArray[i, j] > maxValue)
+        {
+            maxValue = fiveArray[i, j];
+            maxRow = i;
+            maxCol = j;
+        }
+    }
+}
+
+Console.WriteLine($"Мінімальний елемент масиву = {minValue}, за координатами {minRow} {minCol}");
+Console.WriteLine($"Максимальний елемент масиву = {maxValue}, за координатами {maxRow} {maxCol}");
+
 // 5. За допомогою enum створити програму, що буде запитувати у користувача кількість днів,
 // а потім рахувати який буде день через введену кількість, якщо рахувати від понеділка і виводити результат. Наприклад: 
 // Приклад 1: Вхідний параметр: 13 Очікуваний вивід: Sunday
 // Приклад 2: Вхідний параметр: 3 Очікуваний вивід: Thursday
+
+Console.Write("\n5. Кількість днів.\nВведіть кількість днів: ");
+int enterDay = int.Parse(Console.ReadLine());
+
+int daysNumber = enterDay % 7;
+WeekDays Days = (WeekDays)daysNumber;
+
+switch (Days)
+{
+    case WeekDays.Saturday:
+        Console.WriteLine(WeekDays.Saturday);
+        break;
+    case WeekDays.Monday:
+        Console.WriteLine(WeekDays.Monday);
+        break;
+    case WeekDays.Tuesday:
+        Console.WriteLine(WeekDays.Tuesday);
+        break;
+    case WeekDays.Wednesday:
+        Console.WriteLine(WeekDays.Wednesday);
+        break;
+    case WeekDays.Thursday:
+        Console.WriteLine(WeekDays.Thursday);
+        break;
+    case WeekDays.Friday:
+        Console.WriteLine(WeekDays.Friday);
+        break;
+    case WeekDays.Sunday:
+        Console.WriteLine(WeekDays.Sunday);
+        break;
+}
+public enum WeekDays
+{
+    Saturday,
+    Monday,
+    Tuesday,
+    Wednesday,
+    Thursday,
+    Friday,
+    Sunday
+}
