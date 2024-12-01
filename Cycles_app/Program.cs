@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Text.RegularExpressions;
 
 Console.OutputEncoding = Encoding.UTF8;
 int exception = 0;
@@ -36,7 +37,7 @@ try
 
     for (int i = 0; i < row; i++)
     {
-        for (int j = 0; j < row; j++)
+        for (int j = 0; j <= i; j++)
         {
             Console.Write("*");
         }
@@ -56,7 +57,7 @@ try
     {
         bool result = true;
 
-        for (int j = 2; j < i; j++)
+        for (int j = 2; j <= i / 2; j++)
         {
             if (i % j == 0)
             {
@@ -79,39 +80,32 @@ try
     // а також принаймні один символ - це спеціальний символ (наприклад, !, @, # тощо).
 
     exception++;
-    Console.Write("4. Перевірка паролю\nВведіть пароль, більше 8 символів, використовуючи букви та цифри: ");
-    string firstPassword = Console.ReadLine();
-    int index = 0;
+    Console.WriteLine("4. Перевірка паролю");
+    string password = @"^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{8,}$";
 
-    if (firstPassword.Length < 8)
+    while (true)
     {
-        Console.WriteLine("Короткий пароль!");
-    }
-    else
-    {
-        for (int i = 0; i < firstPassword.Length; i++)
+        Console.Write("Введіть пароль, не меньше 8 символів, використовуючи букви, цифри та спецсимволи: ");
+        string firstPassword = Console.ReadLine();
+        if (Regex.IsMatch(firstPassword, password))
         {
-            index = firstPassword.IndexOf(Convert.ToString(i));
-            if (index != -1)
+            Console.Write("Повторіть введений пароль: ");
+            string secondPassword = Console.ReadLine();
+            bool result = firstPassword.Equals(secondPassword);
+
+            if (result)
             {
-                Console.Write("Повторіть введений пароль: ");
-                string secondPassword = Console.ReadLine();
-                bool result = firstPassword.Equals(secondPassword);
-
-                if (result)
-                {
-                    Console.WriteLine("Паролі однакові!");
-                }
-                else
-                {
-                    Console.WriteLine("Паролі різні!");
-                }
-                break;
+                Console.WriteLine("Паролі однакові!");
             }
+            else
+            {
+                Console.WriteLine("Паролі різні!");
+            }
+            break;
         }
-        if(index == -1)
+        else
         {
-            Console.WriteLine("В паролі відсутні цифри!");
+            Console.WriteLine("Пароль введено не коректно!");
         }
     }
 
@@ -194,7 +188,7 @@ try
     int prime = int.Parse(Console.ReadLine());
     bool primeResult = true;
 
-    for (int i = 2; i < prime; i++)
+    for (int i = 2; i <= prime / 2; i++)
     { 
         if(prime % i == 0)
         {
