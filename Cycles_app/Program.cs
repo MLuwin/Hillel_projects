@@ -189,15 +189,15 @@ try
     bool primeResult = true;
 
     for (int i = 2; i <= prime / 2; i++)
-    { 
-        if(prime % i == 0)
+    {
+        if (prime % i == 0)
         {
             primeResult = false;
             break;
         }
     }
 
-    if (primeResult) 
+    if (primeResult)
     {
         Console.WriteLine("Це просте число!");
     }
