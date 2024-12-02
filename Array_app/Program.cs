@@ -141,30 +141,8 @@ int enterDay = int.Parse(Console.ReadLine());
 int daysNumber = enterDay % 7;
 WeekDays Days = (WeekDays)daysNumber;
 
-switch (Days)
-{
-    case WeekDays.Saturday:
-        Console.WriteLine(WeekDays.Saturday);
-        break;
-    case WeekDays.Monday:
-        Console.WriteLine(WeekDays.Monday);
-        break;
-    case WeekDays.Tuesday:
-        Console.WriteLine(WeekDays.Tuesday);
-        break;
-    case WeekDays.Wednesday:
-        Console.WriteLine(WeekDays.Wednesday);
-        break;
-    case WeekDays.Thursday:
-        Console.WriteLine(WeekDays.Thursday);
-        break;
-    case WeekDays.Friday:
-        Console.WriteLine(WeekDays.Friday);
-        break;
-    case WeekDays.Sunday:
-        Console.WriteLine(WeekDays.Sunday);
-        break;
-}
+Console.WriteLine(Days);
+
 public enum WeekDays
 {
     Saturday,
