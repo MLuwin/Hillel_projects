@@ -8,7 +8,7 @@ try
 {
     char[] ticTacToe = { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
     int plaer = 1; // 1й гравець - непарні числа, 2й гравець - парні
-    bool cellFull = false;
+    bool cellFull = false, number = false;
 
     do
     {
@@ -54,6 +54,13 @@ try
             Console.WriteLine("\nХодить 1й гравець.");
         }
 
+        // Якщо ввели невірний номер
+        if (number)
+        {
+            Console.WriteLine("\nНомер клітинки введено не вірно!");
+            number = false;
+        }
+
         // Якщо вибрана клітинка зайнята
         if (cellFull)
         {
@@ -64,40 +71,48 @@ try
         Console.Write("\nВведіть число від 1 до 9: ");
         int cell = int.Parse(Console.ReadLine());
 
-        // Перевірка чи зайнята вибрана клітина
-        if (ticTacToe[cell - 1] != 'X' && ticTacToe[cell - 1] != 'O')
+        // Перевірка коректності вводу номера клітинки
+        if(cell >=1 && cell <= 9)
         {
-            if (plaer % 2 == 0)
+            // Перевірка чи зайнята вибрана клітинка
+            if (ticTacToe[cell - 1] != 'X' && ticTacToe[cell - 1] != 'O')
             {
-                ticTacToe[cell - 1] = 'O';
-                plaer++;
+                if (plaer % 2 == 0)
+                {
+                    ticTacToe[cell - 1] = 'O';
+                    plaer++;
+                }
+                else
+                {
+                    ticTacToe[cell - 1] = 'X';
+                    plaer++;
+                }
             }
             else
             {
-                ticTacToe[cell - 1] = 'X';
-                plaer++;
+                cellFull = true;
             }
         }
         else
         {
-            cellFull = true;
+            number = true;
         }
     }
     while (true);
 }
 catch (ArgumentNullException)
 {
-    Console.WriteLine("Ви передали порожнє значення!");
+    Console.WriteLine("\nВи передали порожнє значення!");
 }
 catch (FormatException)
 {
-    Console.WriteLine("Невірний формат даних!");
+    Console.WriteLine("\nНевірний формат даних!");
 }
 catch (OverflowException)
 {
-    Console.WriteLine("Виняток переповнення!");
+    Console.WriteLine("\nВиняток переповнення!");
 }
 catch (Exception)
 {
-    Console.WriteLine("Невідовий виняток!");
+    Console.WriteLine("\nНевідовий виняток!");
 }
