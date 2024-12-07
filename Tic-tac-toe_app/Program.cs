@@ -6,9 +6,16 @@ Console.OutputEncoding = Encoding.UTF8;
 
 try
 {
-    char[] ticTacToe = { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+    char[] ticTacToe = new char[9];
+    for (int i = 0; i < ticTacToe.Length; i++)
+    {
+        ticTacToe[i] = '*';
+    }
+
     int plaer = 1; // 1й гравець - непарні числа, 2й гравець - парні
     bool cellFull = false, number = false;
+    char winer = 'X';
+    int draw;
 
     do
     {
@@ -18,28 +25,48 @@ try
         Console.WriteLine("Перший гравець - 'X'.\nДругий гравець - 'O'.\n");
 
         // Виведення ігрового поля
-        Console.WriteLine($" {ticTacToe[0]} | {ticTacToe[1]} | {ticTacToe[2]}");
-        Console.WriteLine("-----------");
-        Console.WriteLine($" {ticTacToe[3]} | {ticTacToe[4]} | {ticTacToe[5]}");
-        Console.WriteLine("-----------");
-        Console.WriteLine($" {ticTacToe[6]} | {ticTacToe[7]} | {ticTacToe[8]}");
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                Console.Write($" {ticTacToe[i * 3 + j]}");
+                if (j < 2)
+                {
+                    Console.Write(" |");
+                }
+            }
+            if (i < 2)
+            {
+                Console.WriteLine("\n-----------");
+            }
+        }
+
+        Console.WriteLine();
 
         // Перевірка на перемогу або нічию
-        if (ticTacToe[0] == ticTacToe[1] && ticTacToe[1] == ticTacToe[2] ||
-                ticTacToe[3] == ticTacToe[4] && ticTacToe[4] == ticTacToe[5] ||
-                ticTacToe[6] == ticTacToe[7] && ticTacToe[7] == ticTacToe[8] ||
-                ticTacToe[0] == ticTacToe[3] && ticTacToe[3] == ticTacToe[6] ||
-                ticTacToe[1] == ticTacToe[4] && ticTacToe[4] == ticTacToe[7] ||
-                ticTacToe[2] == ticTacToe[5] && ticTacToe[5] == ticTacToe[8] ||
-                ticTacToe[0] == ticTacToe[4] && ticTacToe[4] == ticTacToe[8] ||
-                ticTacToe[2] == ticTacToe[4] && ticTacToe[4] == ticTacToe[6])
+        draw = 0;
+        for (int i = 0; i < ticTacToe.Length; i++)
+        {
+            if (ticTacToe[i] == '*')
+            {
+                draw++;
+                break;
+            }
+        }
+
+        if (ticTacToe[0] == winer && ticTacToe[1] == winer && ticTacToe[2] == winer ||
+            ticTacToe[3] == winer && ticTacToe[4] == winer && ticTacToe[5] == winer ||
+            ticTacToe[6] == winer && ticTacToe[7] == winer && ticTacToe[8] == winer ||
+            ticTacToe[0] == winer && ticTacToe[3] == winer && ticTacToe[6] == winer ||
+            ticTacToe[1] == winer && ticTacToe[4] == winer && ticTacToe[7] == winer ||
+            ticTacToe[2] == winer && ticTacToe[5] == winer && ticTacToe[8] == winer ||
+            ticTacToe[0] == winer && ticTacToe[4] == winer && ticTacToe[8] == winer ||
+            ticTacToe[2] == winer && ticTacToe[4] == winer && ticTacToe[6] == winer)
         {
             Console.WriteLine($"\nПереміг {plaer % 2 + 1}й гравець!");
             break;
         }
-        else if (ticTacToe[0] != '1' && ticTacToe[1] != '2' && ticTacToe[2] != '3' &&
-            ticTacToe[3] != '4' && ticTacToe[4] != '5' && ticTacToe[5] != '6' &&
-            ticTacToe[6] != '7' && ticTacToe[7] != '8' && ticTacToe[8] != '9')
+        else if (draw == 0)
         {
             Console.WriteLine($"\nНічия!");
             break;
@@ -48,10 +75,12 @@ try
         if (plaer % 2 == 0)
         {
             Console.WriteLine("\nХодить 2й гравець.");
+            winer = 'O';
         }
         else
         {
             Console.WriteLine("\nХодить 1й гравець.");
+            winer = 'X';
         }
 
         // Якщо ввели невірний номер
@@ -72,7 +101,7 @@ try
         int cell = int.Parse(Console.ReadLine());
 
         // Перевірка коректності вводу номера клітинки
-        if(cell >=1 && cell <= 9)
+        if (cell >= 1 && cell <= 9)
         {
             // Перевірка чи зайнята вибрана клітинка
             if (ticTacToe[cell - 1] != 'X' && ticTacToe[cell - 1] != 'O')
